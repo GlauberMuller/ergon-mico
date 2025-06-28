@@ -1,105 +1,92 @@
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: url('background.jpg') no-repeat center center fixed;
-  background-size: cover;
-  color: #333;
-}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Check-in Diário de Saúde</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🧠 Check-in Diário de Saúde</h1>
+    <p class="subtitle">Como você está hoje? Responda de forma sincera e anônima.</p>
+    <form id="checkin-form">
+      <div class="questions">
 
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 30px;
-  border-radius: 12px;
-  margin-top: 40px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
+        <!-- Lista de 40 perguntas -->
+        <script>
+          const perguntas = [
+            "Como está sua relação com a família hoje?",
+            "Você se sente respeitado(a) em sua identidade de gênero?",
+            "Você sente apoio emocional das pessoas próximas?",
+            "Como está sua energia física hoje?",
+            "Você dormiu bem nas últimas noites?",
+            "Você se alimentou adequadamente hoje?",
+            "Como está seu nível de estresse?",
+            "Você teve momentos de lazer ou descanso hoje?",
+            "Você sentiu ansiedade nas últimas 24h?",
+            "Está se sentindo motivado(a) para suas atividades hoje?",
+            "Sente que suas opiniões são respeitadas no seu ambiente de convivência?",
+            "Você se sente incluído(a) em seu ambiente social?",
+            "Tem convivido com pessoas que respeitam suas diferenças?",
+            "Você consegue acessar serviços básicos (saúde, transporte, educação)?",
+            "Tem acesso a espaços seguros para se expressar?",
+            "Você se sente representado(a) em sua comunidade?",
+            "Teve momentos de autocuidado hoje?",
+            "Você pratica alguma atividade física regularmente?",
+            "Tem conseguido manter uma rotina saudável?",
+            "Sente-se bem com sua imagem corporal?",
+            "Você está lidando bem com desafios emocionais?",
+            "Recebe suporte psicológico se necessário?",
+            "Você sente que pode pedir ajuda quando precisa?",
+            "Consegue identificar suas emoções com clareza?",
+            "Como você lida com críticas?",
+            "Tem alguém com quem conversar sobre assuntos importantes?",
+            "Você sente que pertence a algum grupo social?",
+            "Já foi alvo de preconceito recentemente?",
+            "Você conhece seus direitos sociais e civis?",
+            "Você participa de decisões na sua casa ou trabalho?",
+            "Você já buscou apoio profissional para sua saúde mental?",
+            "Teve crises de ansiedade ou pânico recentemente?",
+            "Sente-se satisfeito(a) com sua rede de apoio?",
+            "Você sente vontade de isolar-se socialmente?",
+            "Tem sentido dores físicas sem causa aparente?",
+            "Você sente-se capaz de enfrentar seus desafios?",
+            "Você tem hobbies ou atividades que lhe dão prazer?",
+            "Você sente-se bem-vindo(a) em espaços públicos?",
+            "Você já foi impedido de expressar quem é?",
+            "Hoje, como você avalia seu bem-estar geral?"
+          ];
+        </script>
 
-h1 {
-  text-align: center;
-  color: #007960;
-  margin-bottom: 10px;
-}
+        <div id="perguntas-js"></div>
 
-.subtitle {
-  text-align: center;
-  color: #555;
-  margin-bottom: 30px;
-  font-size: 1.1em;
-}
+      </div>
 
-.question {
-  margin-bottom: 25px;
-}
+      <button type="submit" class="submit-button">📅 Enviar Check-in</button>
+      <div id="confirmation" class="hidden confirmation">✅ Check-in enviado com sucesso!</div>
+    </form>
+  </div>
 
-.question p {
-  font-weight: bold;
-  margin-bottom: 10px;
-}
+  <script>
+    const container = document.getElementById("perguntas-js");
+    perguntas.forEach((texto, i) => {
+      const bloco = document.createElement("div");
+      bloco.className = "question";
+      bloco.innerHTML = `
+        <p>${i + 1}. ${texto}</p>
+        <input type="hidden" name="q${i + 1}" />
+        <div class="option-grid">
+          <button type="button" class="option" data-value="A">A</button>
+          <button type="button" class="option" data-value="B">B</button>
+          <button type="button" class="option" data-value="C">C</button>
+          <button type="button" class="option" data-value="D">D</button>
+        </div>
+      `;
+      container.appendChild(bloco);
+    });
+  </script>
 
-.option-grid {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.option {
-  background: linear-gradient(135deg, #e29adf, #69d5ce);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 18px;
-  font-weight: bold;
-  cursor: pointer;
-  flex: 1 1 40%;
-  text-align: center;
-  transition: background 0.3s;
-}
-
-.option:hover {
-  background: linear-gradient(135deg, #d17ad3, #52c8bc);
-}
-
-.option.selected {
-  background: #007960;
-  color: white;
-}
-
-.submit-button {
-  width: 100%;
-  padding: 15px;
-  background-color: #007960;
-  color: white;
-  font-size: 1.1em;
-  font-weight: bold;
-  border: none;
-  border-radius: 10px;
-  margin-top: 20px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.submit-button:hover {
-  background-color: #005f4d;
-}
-
-.confirmation {
-  text-align: center;
-  margin-top: 20px;
-  color: green;
-  font-weight: bold;
-}
-
-.hidden {
-  display: none;
-}
-
-@media screen and (max-width: 600px) {
-  .option-grid {
-    flex-direction: column;
-  }
-  .option {
-    flex: 1 1 100%;
-  }
-}
+  <script src="script.js"></script>
+</body>
+</html>
