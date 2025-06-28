@@ -2,62 +2,177 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Check-in de Saúde</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Check-in de Saúde Completo</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <main class="container">
     <section class="form-section">
-      <h1>✅ Check-in Diário de Saúde</h1>
-      <p>Informe seu estado físico e emocional de forma simples e rápida.</p>
+      <h1>🩺 Check-in Diário de Saúde</h1>
+      <p>Como você está hoje? Responda com sinceridade para cuidar de sua saúde mental, emocional e física.</p>
+
       <form id="checkin-form">
-        <!-- Humor -->
-        <label>Como está seu humor hoje?</label>
-        <div class="radio-group">
-          <label><input type="radio" name="mood" value="Feliz" /> Feliz</label>
-          <label><input type="radio" name="mood" value="Triste" /> Triste</label>
-          <label><input type="radio" name="mood" value="Ansioso" /> Ansioso</label>
-          <label><input type="radio" name="mood" value="Irritado" /> Irritado</label>
-        </div>
+        <h2>🧠 Saúde Mental</h2>
 
-        <!-- Estresse -->
-        <label>Nível de Estresse:</label>
-        <select name="stress" id="stress">
-          <option value="1">1 - Muito tranquilo</option>
-          <option value="5">5 - Moderado</option>
-          <option value="10">10 - Muito estressado</option>
+        <label>1. Como está seu humor hoje?</label>
+        <select name="humor">
+          <option value="">Selecione</option>
+          <option>Feliz</option>
+          <option>Triste</option>
+          <option>Ansioso</option>
+          <option>Irritado</option>
+          <option>Neutro</option>
         </select>
 
-        <!-- Sono -->
-        <label>Quantas horas dormiu?</label>
-        <select name="sleep" id="sleep">
-          <option value="menos5">Menos de 5h</option>
-          <option value="5a7">Entre 5h e 7h</option>
-          <option value="8oumais">8h ou mais</option>
+        <label>2. Está conseguindo se concentrar bem?</label>
+        <select name="concentracao">
+          <option value="">Selecione</option>
+          <option>Sim</option>
+          <option>Não</option>
         </select>
 
-        <!-- Alimentação -->
-        <label>Como está sua alimentação hoje?</label>
-        <div class="radio-group">
-          <label><input type="radio" name="alimentacao" value="Equilibrada" /> Equilibrada</label>
-          <label><input type="radio" name="alimentacao" value="Irregular" /> Irregular</label>
-          <label><input type="radio" name="alimentacao" value="Excessiva" /> Excessiva</label>
-        </div>
+        <label>3. Teve pensamentos negativos ou autocrítica excessiva?</label>
+        <select name="negatividade">
+          <option value="">Selecione</option>
+          <option>Sim</option>
+          <option>Não</option>
+        </select>
 
-        <!-- Dor Física -->
-        <label>Sente alguma dor física no momento?</label>
-        <div class="radio-group">
-          <label><input type="radio" name="pain" value="Sim" /> Sim</label>
-          <label><input type="radio" name="pain" value="Não" /> Não</label>
-        </div>
+        <label>4. Sente-se desmotivado hoje?</label>
+        <select name="motivacao">
+          <option value="">Selecione</option>
+          <option>1 - Nada</option>
+          <option>2</option>
+          <option>3 - Moderado</option>
+          <option>4</option>
+          <option>5 - Muito</option>
+        </select>
 
-        <!-- Observações -->
-        <label for="notes">Deseja compartilhar algo?</label>
-        <textarea id="notes" name="notes" placeholder="Ex: estou com dor nas costas..."></textarea>
+        <label>5. Sentiu ansiedade nas últimas horas?</label>
+        <select name="ansiedade">
+          <option value="">Selecione</option>
+          <option>Nenhuma</option>
+          <option>Leve</option>
+          <option>Moderada</option>
+          <option>Alta</option>
+        </select>
 
-        <button type="submit">Enviar Check-in</button>
-        <p id="confirmation" class="hidden">✔️ Check-in enviado com sucesso!</p>
+        <label>6. Deseja conversar com alguém?</label>
+        <select name="conversa">
+          <option value="">Selecione</option>
+          <option>Sim</option>
+          <option>Não</option>
+        </select>
+
+        <h2>🫂 Saúde Psicossocial</h2>
+
+        <label>7. Sentiu apoio emocional hoje?</label>
+        <select name="apoio">
+          <option value="">Selecione</option>
+          <option>Sim</option>
+          <option>Não</option>
+        </select>
+
+        <label>8. Interagiu socialmente?</label>
+        <select name="interacao">
+          <option value="">Selecione</option>
+          <option>Sim</option>
+          <option>Não</option>
+        </select>
+
+        <label>9. Consegue expressar suas emoções?</label>
+        <select name="expressoes">
+          <option value="">Selecione</option>
+          <option>Sim</option>
+          <option>Não</option>
+        </select>
+
+        <label>10. Sentiu-se sozinho?</label>
+        <select name="solidão">
+          <option value="">Selecione</option>
+          <option>Sim</option>
+          <option>Não</option>
+        </select>
+
+        <label>11. Teve conflitos interpessoais?</label>
+        <select name="conflito">
+          <option value="">Selecione</option>
+          <option>Sim</option>
+          <option>Não</option>
+        </select>
+
+        <label>12. Algum problema tem afetado sua vida social?</label>
+        <select name="vida_social">
+          <option value="">Selecione</option>
+          <option>Sim</option>
+          <option>Não</option>
+        </select>
+
+        <label>13. Sente-se valorizado onde vive/trabalha?</label>
+        <select name="valorizado">
+          <option value="">Selecione</option>
+          <option>Sim</option>
+          <option>Não</option>
+        </select>
+
+        <h2>💪 Saúde Fisiológica</h2>
+
+        <label>14. Dormiu bem?</label>
+        <select name="sono_bom">
+          <option value="">Selecione</option>
+          <option>Sim</option>
+          <option>Não</option>
+        </select>
+
+        <label>15. Quantas horas dormiu?</label>
+        <select name="horas_sono">
+          <option value="">Selecione</option>
+          <option>Menos de 5h</option>
+          <option>5-7h</option>
+          <option>Mais de 7h</option>
+        </select>
+
+        <label>16. Alimentação hoje foi equilibrada?</label>
+        <select name="alimentacao">
+          <option value="">Selecione</option>
+          <option>Sim</option>
+          <option>Não</option>
+        </select>
+
+        <label>17. Está com alguma dor?</label>
+        <select name="dor">
+          <option value="">Selecione</option>
+          <option>Sim</option>
+          <option>Não</option>
+        </select>
+
+        <label>18. Praticou atividade física hoje?</label>
+        <select name="atividade_fisica">
+          <option value="">Selecione</option>
+          <option>Sim</option>
+          <option>Não</option>
+        </select>
+
+        <label>19. Sentiu cansaço excessivo?</label>
+        <select name="cansaco">
+          <option value="">Selecione</option>
+          <option>Sim</option>
+          <option>Não</option>
+        </select>
+
+        <label>20. Bebeu água suficiente hoje?</label>
+        <select name="agua">
+          <option value="">Selecione</option>
+          <option>Sim</option>
+          <option>Não</option>
+        </select>
+
+        <label>Observações:</label>
+        <textarea name="observacoes" placeholder="Algo mais que queira compartilhar..."></textarea>
+
+        <button type="submit">📩 Enviar Check-in</button>
+        <p id="confirmation" class="hidden">✅ Check-in enviado com sucesso!</p>
       </form>
     </section>
   </main>
