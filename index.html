@@ -1,53 +1,59 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Check-in Diário Humanizado</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="container">
-    <h1>📋 Check-in de Saúde</h1>
-    <p>Responda com sinceridade. Seus dados são confidenciais.</p>
+document.querySelectorAll('.option').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const parent = btn.closest('.question');
+    const all = parent.querySelectorAll('.option');
+    all.forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    const input = parent.querySelector('input[type="hidden"]');
+    input.value = btn.dataset.value;
+  });
+});
 
-    <form id="checkin-form">
-      <!-- Exemplo com botoes estilizados -->
-      <div class="question">
-        <p>🏠 Como está sua relação com sua família?</p>
-        <div class="option-grid">
-          <button type="button" class="option" data-value="Boa">Boa</button>
-          <button type="button" class="option" data-value="Regular">Regular</button>
-          <button type="button" class="option" data-value="Difícil">Difícil</button>
-          <button type="button" class="option" data-value="Prefiro não dizer">Prefiro não dizer</button>
-        </div>
-        <input type="hidden" name="familia">
+const form = document.getElementById('checkin-form');
+const confirmation = document.getElementById('confirmation');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const formData = new FormData(form);
+  const entries = Object.fromEntries(formData.entries());
+
+  const csvContent = generateCSV(entries);
+  downloadCSV(csvContent);
+
+  confirmation.textContent = '✅ Check-in enviado com sucesso!';
+  confirmation.classList.remove('hidden');
+  form.reset();
+  document.querySelectorAll('.selected').forEach(btn => btn.classList.remove('selected'));
+});
+
+function generateCSV(data) {
+  let headers = Object.keys(data).join(',');
+  let values = Object.values(data).map(v => `"${v}"`).join(',');
+  return `${headers}\n${values}`;
+}
+
+function downloadCSV(content) {
+  const blob = new Blob([content], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  link.setAttribute('href', URL.createObjectURL(blob));
+  link.setAttribute('download', `checkin-${Date.now()}.csv`);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+// Função opcional para autogerar perguntas se quiser programaticamente adicionar no HTML futuramente
+function generateQuestionsHTML(questions) {
+  return questions.map((q, index) => `
+    <div class="question">
+      <p>${index + 1}. ${q}</p>
+      <input type="hidden" name="q${index + 1}" />
+      <div class="option-grid">
+        <button type="button" class="option" data-value="A">A</button>
+        <button type="button" class="option" data-value="B">B</button>
+        <button type="button" class="option" data-value="C">C</button>
+        <button type="button" class="option" data-value="D">D</button>
       </div>
-
-      <div class="question">
-        <p>💉 Como você classifica seu nível de estresse hoje?</p>
-        <div class="option-grid">
-          <button type="button" class="option" data-value="Baixo">Baixo</button>
-          <button type="button" class="option" data-value="Moderado">Moderado</button>
-          <button type="button" class="option" data-value="Alto">Alto</button>
-          <button type="button" class="option" data-value="Extremo">Extremo</button>
-        </div>
-        <input type="hidden" name="estresse">
-      </div>
-
-      <!-- Exemplo de campo de texto -->
-      <div class="question">
-        <p>😪 Quantas horas você dormiu?</p>
-        <input type="number" name="sono" min="0" step="0.5" placeholder="Horas de sono">
-      </div>
-
-      <!-- Repita para as demais perguntas... (20 a 40 blocos) -->
-
-      <button type="submit" class="submit-btn">📄 Enviar Check-in</button>
-      <p id="confirmation" class="hidden"></p>
-    </form>
-  </div>
-
-  <script src="script.js"></script>
-</body>
-</html>
+    </div>
+  `).join('');
+}
