@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Check-in de Saúde</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <section class="image-section">
+      <img src="health-checkin.jpg" alt="Saúde e bem-estar" />
+    </section>
+    <section class="form-section">
+      <h1>Check-in Diário de Saúde</h1>
+      <p>Informe seu estado físico e emocional.</p>
+      <form id="checkin-form">
+        <label for="mood">Humor:</label>
+        <input type="text" id="mood" name="mood" placeholder="Ex: Feliz, ansioso..." />
+
+        <label for="stress">Nível de Estresse (1 a 10):</label>
+        <input type="number" id="stress" name="stress" min="1" max="10" />
+
+        <label for="sleep">Horas de Sono:</label>
+        <input type="number" id="sleep" name="sleep" min="0" max="24" />
+
+        <label for="pain">Dor Física?</label>
+        <input type="checkbox" id="pain" name="pain" />
+
+        <label for="notes">Observações:</label>
+        <textarea id="notes" name="notes" placeholder="Algo mais que queira compartilhar..."></textarea>
+
+        <button type="submit">Enviar Check-in</button>
+        <p id="confirmation" class="hidden">✔️ Check-in enviado com sucesso!</p>
+      </form>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
