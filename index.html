@@ -8,27 +8,53 @@
 </head>
 <body>
   <main class="container">
-    <section class="image-section">
-      <img src="health-checkin.jpg" alt="Saúde e bem-estar" />
-    </section>
     <section class="form-section">
-      <h1>Check-in Diário de Saúde</h1>
-      <p>Informe seu estado físico e emocional.</p>
+      <h1>✅ Check-in Diário de Saúde</h1>
+      <p>Informe seu estado físico e emocional de forma simples e rápida.</p>
       <form id="checkin-form">
-        <label for="mood">Humor:</label>
-        <input type="text" id="mood" name="mood" placeholder="Ex: Feliz, ansioso..." />
+        <!-- Humor -->
+        <label>Como está seu humor hoje?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="mood" value="Feliz" /> Feliz</label>
+          <label><input type="radio" name="mood" value="Triste" /> Triste</label>
+          <label><input type="radio" name="mood" value="Ansioso" /> Ansioso</label>
+          <label><input type="radio" name="mood" value="Irritado" /> Irritado</label>
+        </div>
 
-        <label for="stress">Nível de Estresse (1 a 10):</label>
-        <input type="number" id="stress" name="stress" min="1" max="10" />
+        <!-- Estresse -->
+        <label>Nível de Estresse:</label>
+        <select name="stress" id="stress">
+          <option value="1">1 - Muito tranquilo</option>
+          <option value="5">5 - Moderado</option>
+          <option value="10">10 - Muito estressado</option>
+        </select>
 
-        <label for="sleep">Horas de Sono:</label>
-        <input type="number" id="sleep" name="sleep" min="0" max="24" />
+        <!-- Sono -->
+        <label>Quantas horas dormiu?</label>
+        <select name="sleep" id="sleep">
+          <option value="menos5">Menos de 5h</option>
+          <option value="5a7">Entre 5h e 7h</option>
+          <option value="8oumais">8h ou mais</option>
+        </select>
 
-        <label for="pain">Dor Física?</label>
-        <input type="checkbox" id="pain" name="pain" />
+        <!-- Alimentação -->
+        <label>Como está sua alimentação hoje?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="alimentacao" value="Equilibrada" /> Equilibrada</label>
+          <label><input type="radio" name="alimentacao" value="Irregular" /> Irregular</label>
+          <label><input type="radio" name="alimentacao" value="Excessiva" /> Excessiva</label>
+        </div>
 
-        <label for="notes">Observações:</label>
-        <textarea id="notes" name="notes" placeholder="Algo mais que queira compartilhar..."></textarea>
+        <!-- Dor Física -->
+        <label>Sente alguma dor física no momento?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="pain" value="Sim" /> Sim</label>
+          <label><input type="radio" name="pain" value="Não" /> Não</label>
+        </div>
+
+        <!-- Observações -->
+        <label for="notes">Deseja compartilhar algo?</label>
+        <textarea id="notes" name="notes" placeholder="Ex: estou com dor nas costas..."></textarea>
 
         <button type="submit">Enviar Check-in</button>
         <p id="confirmation" class="hidden">✔️ Check-in enviado com sucesso!</p>
