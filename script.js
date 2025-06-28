@@ -1,23 +1,19 @@
-document.getElementById('checkin-form').addEventListener('submit', function (e) {
-  e.preventDefault();
+document.getElementById("checkin-form").addEventListener("submit", function(event) {
+  event.preventDefault();
 
-  const formData = new FormData(this);
-  const data = {};
-  formData.forEach((value, key) => data[key] = value);
+  const formData = new FormData(event.target);
+  const entries = Object.fromEntries(formData.entries());
 
-  fetch("SUA_WEBHOOK_URL_AQUI", {
-    method: "POST",
-    body: new URLSearchParams(data),
-  })
-  .then(response => response.text())
-  .then(message => {
-    document.getElementById('confirmation').textContent = message;
-    document.getElementById('confirmation').classList.remove('hidden');
-    this.reset();
-  })
-  .catch(error => {
-    console.error("Erro ao enviar:", error);
-    document.getElementById('confirmation').textContent = "Erro ao enviar check-in.";
-    document.getElementById('confirmation').classList.remove('hidden');
-  });
+  // Converte checkbox manualmente
+  entries["dor"] = formData.get("dor") ? "Sim" : "Não";
+
+  const row = Object.values(entries);
+
+  google.script.run.withSuccessHandler(() => {
+    const confirmation = document.getElementById("confirmation");
+    confirmation.textContent = "✅ Check-in enviado com sucesso!";
+    confirmation.classList.remove("hidden");
+    confirmation.classList.add("success");
+    document.getElementById("checkin-form").reset();
+  }).appendRowToSheet(row);
 });
