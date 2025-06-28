@@ -1,112 +1,71 @@
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f9fdfc;
-  color: #0b5b4c;
-  padding: 20px;
-  background-image: url('https://images.unsplash.com/photo-1588776814546-ec9ec99cefa7');
-  background-size: cover;
-  background-position: center;
-  backdrop-filter: blur(3px);
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
-  background: rgba(255, 255, 255, 0.9);
-  max-width: 800px;
+  max-width: 600px;
   margin: auto;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 0 25px rgba(0,0,0,0.1);
+  background: #fff;
+  padding: 2rem;
+  margin-top: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 h1 {
-  color: #00724d;
-  margin-bottom: 10px;
-  font-size: 2rem;
   text-align: center;
-}
-
-p {
-  text-align: center;
-  font-size: 1.1rem;
-  margin-bottom: 25px;
+  color: #3e64ff;
 }
 
 label {
   display: block;
-  margin-top: 15px;
-  font-weight: 600;
-  font-size: 1rem;
+  margin-top: 1rem;
+  font-weight: bold;
 }
 
-input, select, textarea {
+input[type="text"],
+input[type="number"],
+select,
+textarea {
   width: 100%;
-  padding: 12px;
-  margin-top: 6px;
+  padding: 0.6rem;
+  margin-top: 0.3rem;
   border: 1px solid #ccc;
-  border-radius: 10px;
-  font-size: 1rem;
+  border-radius: 8px;
 }
 
 textarea {
-  resize: vertical;
-  min-height: 80px;
+  height: 100px;
 }
 
 button {
-  margin-top: 30px;
+  margin-top: 1.5rem;
   width: 100%;
-  background-color: #057a55;
+  padding: 1rem;
+  background-color: #3e64ff;
   color: white;
-  font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1rem;
   border: none;
-  border-radius: 12px;
-  padding: 16px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
 }
 
 button:hover {
-  background-color: #046b49;
-  transform: scale(1.02);
+  background-color: #2c4fd3;
 }
 
-button::before {
-  content: '\\1F4CB';
-  font-size: 1.4rem;
+#confirmation {
+  margin-top: 1rem;
+  text-align: center;
 }
 
 .success {
-  color: #1c8a00;
-  margin-top: 20px;
-  font-weight: bold;
-  text-align: center;
-  font-size: 1.1rem;
+  color: green;
 }
 
 .hidden {
   display: none;
 }
-
-@media (max-width: 600px) {
-  .container {
-    padding: 20px;
-  }
-  h1 {
-    font-size: 1.5rem;
-  }
-  label {
-    font-size: 0.95rem;
-  }
-  input, select, textarea {
-    font-size: 0.95rem;
-  }
-  button {
-    font-size: 1rem;
-  }
-}
-
