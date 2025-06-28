@@ -1,53 +1,40 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-}
-
 body {
-  background: linear-gradient(to bottom right, #f0fdf4, #ffffff);
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f0fdf4;
+  margin: 0;
   padding: 2rem;
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.image-section img {
-  max-width: 100%;
-  border-radius: 1rem;
-  box-shadow: 0 0 20px rgba(0, 128, 0, 0.2);
+  max-width: 720px;
+  margin: auto;
 }
 
 .form-section {
   background: white;
   padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .form-section h1 {
-  font-size: 1.8rem;
-  color: #065f46;
+  color: #047857;
   margin-bottom: 0.5rem;
 }
 
 .form-section p {
-  margin-bottom: 1rem;
   color: #4b5563;
+  margin-bottom: 1.5rem;
 }
 
 label {
   display: block;
   margin-top: 1rem;
-  font-weight: bold;
+  font-weight: 600;
   color: #374151;
 }
 
-input, textarea {
+input[type="text"], select, textarea {
   width: 100%;
   padding: 0.5rem;
   margin-top: 0.25rem;
@@ -55,29 +42,49 @@ input, textarea {
   border-radius: 0.5rem;
 }
 
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.radio-group label {
+  background: #f9fafb;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid #d1d5db;
+  cursor: pointer;
+}
+
+.radio-group input {
+  margin-right: 0.5rem;
+}
+
 button {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   width: 100%;
   padding: 0.75rem;
-  background-color: #059669;
+  background-color: #047857;
   color: white;
   font-size: 1rem;
+  font-weight: bold;
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #047857;
+  background-color: #065f46;
+}
+
+#confirmation {
+  margin-top: 1rem;
+  text-align: center;
+  color: #047857;
+  font-weight: 600;
 }
 
 .hidden {
   display: none;
-}
-
-#confirmation {
-  color: green;
-  font-weight: bold;
-  margin-top: 1rem;
-  text-align: center;
 }
