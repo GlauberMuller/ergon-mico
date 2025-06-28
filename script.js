@@ -16,7 +16,7 @@ form.addEventListener('submit', (e) => {
   e.preventDefault();
   const formData = new FormData(form);
   const entries = Object.fromEntries(formData.entries());
-  
+
   const csvContent = generateCSV(entries);
   downloadCSV(csvContent);
 
@@ -40,4 +40,20 @@ function downloadCSV(content) {
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
+}
+
+// Função opcional para autogerar perguntas se quiser programaticamente adicionar no HTML futuramente
+function generateQuestionsHTML(questions) {
+  return questions.map((q, index) => `
+    <div class="question">
+      <p>${index + 1}. ${q}</p>
+      <input type="hidden" name="q${index + 1}" />
+      <div class="option-grid">
+        <button type="button" class="option" data-value="A">A</button>
+        <button type="button" class="option" data-value="B">B</button>
+        <button type="button" class="option" data-value="C">C</button>
+        <button type="button" class="option" data-value="D">D</button>
+      </div>
+    </div>
+  `).join('');
 }
