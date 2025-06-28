@@ -1,91 +1,105 @@
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: url('background-saude.jpg') no-repeat center center fixed;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: url('background.jpg') no-repeat center center fixed;
   background-size: cover;
-  color: #222;
+  color: #333;
 }
 
 .container {
-  background: rgba(255, 255, 255, 0.95);
-  max-width: 800px;
-  margin: 40px auto;
+  max-width: 900px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.9);
   padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  margin-top: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 h1 {
-  color: #05676e;
   text-align: center;
+  color: #007960;
+  margin-bottom: 10px;
 }
 
-p {
-  font-size: 16px;
-  margin-bottom: 10px;
+.subtitle {
+  text-align: center;
+  color: #555;
+  margin-bottom: 30px;
+  font-size: 1.1em;
 }
 
 .question {
   margin-bottom: 25px;
 }
 
+.question p {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
 .option-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  margin-top: 10px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .option {
-  background: linear-gradient(90deg, #d16ba5, #86a8e7);
+  background: linear-gradient(135deg, #e29adf, #69d5ce);
   color: #fff;
   border: none;
-  border-radius: 10px;
-  padding: 12px;
-  cursor: pointer;
+  border-radius: 8px;
+  padding: 10px 18px;
   font-weight: bold;
-  transition: transform 0.2s, opacity 0.2s;
+  cursor: pointer;
+  flex: 1 1 40%;
+  text-align: center;
+  transition: background 0.3s;
+}
+
+.option:hover {
+  background: linear-gradient(135deg, #d17ad3, #52c8bc);
 }
 
 .option.selected {
-  background: #05676e;
-  color: #fff;
-  transform: scale(1.05);
+  background: #007960;
+  color: white;
 }
 
-input[type="number"], input[type="text"], textarea {
+.submit-button {
   width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  margin-top: 8px;
-}
-
-.submit-btn {
-  width: 100%;
-  background-color: #057a6d;
-  color: #fff;
-  padding: 14px;
-  font-size: 18px;
+  padding: 15px;
+  background-color: #007960;
+  color: white;
+  font-size: 1.1em;
   font-weight: bold;
   border: none;
   border-radius: 10px;
-  cursor: pointer;
   margin-top: 20px;
-  transition: background 0.3s ease;
+  cursor: pointer;
+  transition: background 0.3s;
 }
 
-.submit-btn:hover {
-  background-color: #045c51;
+.submit-button:hover {
+  background-color: #005f4d;
 }
 
-#confirmation {
+.confirmation {
   text-align: center;
   margin-top: 20px;
-  font-weight: bold;
   color: green;
+  font-weight: bold;
 }
 
 .hidden {
   display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .option-grid {
+    flex-direction: column;
+  }
+  .option {
+    flex: 1 1 100%;
+  }
 }
