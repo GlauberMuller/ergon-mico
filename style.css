@@ -1,88 +1,91 @@
-body {
+/* Reset básico */
+* {
+  box-sizing: border-box;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #f0fdf4;
   margin: 0;
-  padding: 2rem;
+  padding: 0;
+}
+
+body {
+  background: #f4faf6 url('https://images.unsplash.com/photo-1588776814546-ec76a71650f2?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+  background-size: cover;
+  color: #003c2f;
+  min-height: 100vh;
 }
 
 .container {
-  max-width: 720px;
-  margin: auto;
+  background-color: rgba(255, 255, 255, 0.95);
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.form-section {
-  background: white;
-  padding: 2rem;
-  border-radius: 1.25rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+h1 {
+  font-size: 1.8rem;
+  color: #007a4d;
+  margin-bottom: 10px;
 }
 
-.form-section h1 {
-  color: #047857;
-  margin-bottom: 0.5rem;
+h2 {
+  margin-top: 30px;
+  font-size: 1.3rem;
+  color: #005837;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 5px;
 }
 
-.form-section p {
-  color: #4b5563;
-  margin-bottom: 1.5rem;
+p {
+  margin-bottom: 20px;
+  color: #333;
 }
 
 label {
   display: block;
-  margin-top: 1rem;
+  margin-top: 15px;
   font-weight: 600;
-  color: #374151;
+  color: #222;
 }
 
-input[type="text"], select, textarea {
+input[type="text"],
+select,
+textarea {
   width: 100%;
-  padding: 0.5rem;
-  margin-top: 0.25rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.5rem;
+  padding: 10px;
+  margin-top: 6px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
 }
 
-.radio-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 0.5rem;
-}
-
-.radio-group label {
-  background: #f9fafb;
-  padding: 0.5rem 1rem;
-  border-radius: 0.75rem;
-  border: 1px solid #d1d5db;
-  cursor: pointer;
-}
-
-.radio-group input {
-  margin-right: 0.5rem;
+textarea {
+  resize: vertical;
+  min-height: 80px;
 }
 
 button {
-  margin-top: 2rem;
-  width: 100%;
-  padding: 0.75rem;
-  background-color: #047857;
+  margin-top: 25px;
+  background-color: #009c6f;
   color: white;
   font-size: 1rem;
-  font-weight: bold;
+  padding: 14px;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 10px;
   cursor: pointer;
+  width: 100%;
+  transition: 0.3s ease;
 }
 
 button:hover {
-  background-color: #065f46;
+  background-color: #007a4d;
 }
 
 #confirmation {
-  margin-top: 1rem;
+  margin-top: 20px;
   text-align: center;
-  color: #047857;
-  font-weight: 600;
+  color: #007a4d;
+  font-weight: bold;
 }
 
 .hidden {
