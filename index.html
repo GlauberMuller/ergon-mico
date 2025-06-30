@@ -1,53 +1,29 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Check-in Diário de Saúde</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NR01 - Avaliação Ocupacional</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdnjs.cloudflares/xlsx/0.18.5/xlsx.full.min.js
 </head>
 <body>
   <div class="container">
-    <h1>🧠 Check-in Diário de Saúde</h1>
-    <p class="subtitle">Como você está hoje? Responda de forma sincera e anônima.</p>
-    <form id="checkin-form">
+    <header>
+      <h2>NR01 - Avaliação Ocupacional</h2>
+      <button id="startBtn">Iniciar Avaliação</button>
+    </header>
 
-      <!-- Lista de 40 perguntas com múltipla escolha -->
-      <div class="questions">
-
-        <!-- Exemplo de pergunta -->
-        <div class="question">
-          <p>1. Como está sua relação com a família hoje?</p>
-          <input type="hidden" name="familia" />
-          <div class="option-grid">
-            <button type="button" class="option" data-value="Boa">A</button>
-            <button type="button" class="option" data-value="Neutra">B</button>
-            <button type="button" class="option" data-value="Difícil">C</button>
-            <button type="button" class="option" data-value="Não quero responder">D</button>
-          </div>
-        </div>
-
-        <!-- 39 outras perguntas -->
-        <!-- Estas devem ser adicionadas abaixo com o mesmo formato -->
-        <!-- Exemplo de mais uma pergunta -->
-        <div class="question">
-          <p>2. Você se sente respeitado(a) em sua identidade de gênero?</p>
-          <input type="hidden" name="identidade_genero" />
-          <div class="option-grid">
-            <button type="button" class="option" data-value="Sim">A</button>
-            <button type="button" class="option" data-value="Parcialmente">B</button>
-            <button type="button" class="option" data-value="Não">C</button>
-            <button type="button" class="option" data-value="Prefiro não responder">D</button>
-          </div>
-        </div>
-
-        <!-- Adicione as outras perguntas seguindo este padrão -->
-
+    <div id="quiz" class="hidden">
+      <div id="questionBox">
+        <p id="questionText"></p>
+        <ul id="optionsList"></ul>
       </div>
-
-      <button type="submit" class="submit-button">📅 Enviar Check-in</button>
-      <div id="confirmation" class="hidden confirmation">✅ Check-in enviado com sucesso!</div>
-    </form>
+      <div class="controls">
+             <div id="summary"></div>
+      <button id="exportBtn">Exportar para Excel</button>
+      <button id="restartBtn">Refazer</button>
+    </div>
   </div>
 
   <script src="script.js"></script>
