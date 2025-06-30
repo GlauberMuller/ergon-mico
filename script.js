@@ -1,59 +1,81 @@
-document.querySelectorAll('.option').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const parent = btn.closest('.question');
-    const all = parent.querySelectorAll('.option');
-    all.forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    const input = parent.querySelector('input[type="hidden"]');
-    input.value = btn.dataset.value;
+const questions = [
+  { text: "Com que frequência você sente estresse excessivo no ambiente de trabalho?", options: ["Nunca", "Às vezes", "Frequentemente", "Sempre"] },
+  { text: "Você se sente apoiado(a) psicologicamente pela liderança?", options: ["Totalmente", "Parcialmente", "Pouco", "Nada"] },
+  // ... (adicione todas as outras perguntas aqui conforme necessário)
+];
+
+let currentQuestion = 0;
+const responses = new Array(questions.length);
+const startBtn = document.getElementById("startBtn");
+const quiz = document.getElementById("quiz");
+const questionText = document.getElementById("questionText");
+const optionsList = document.getElementById("optionsList");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const results = document.getElementById("results");
+const summary = document.getElementById("summary");
+const restartBtn = document.getElementById("restartBtn");
+
+startBtn.addEventListener("click", () => {
+  startBtn.parentElement.classList.add("hidden");
+  quiz.classList.remove("hidden");
+  showQuestion();
+});
+
+function showQuestion() {
+  const q = questions[currentQuestion];
+  questionText.textContent = `${currentQuestion + 1}. ${q.text}`;
+  optionsList.innerHTML = "";
+  q.options.forEach((opt, idx) => {
+    const li = document.createElement("li");
+    li.innerHTML = `<label><input type="radio" name="option" value="${idx}" ${responses[currentQuestion] === idx ? 'checked' : ''}> ${opt}</label>`;
+    optionsList.appendChild(li);
   });
+}
+
+nextBtn.addEventListener("click", () => {
+  saveResponse();
+  if (currentQuestion < questions.length - 1) {
+    currentQuestion++;
+    showQuestion();
+  } else {
+    showResults();
+  }
 });
 
-const form = document.getElementById('checkin-form');
-const confirmation = document.getElementById('confirmation');
-
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const formData = new FormData(form);
-  const entries = Object.fromEntries(formData.entries());
-
-  const csvContent = generateCSV(entries);
-  downloadCSV(csvContent);
-
-  confirmation.textContent = '✅ Check-in enviado com sucesso!';
-  confirmation.classList.remove('hidden');
-  form.reset();
-  document.querySelectorAll('.selected').forEach(btn => btn.classList.remove('selected'));
+prevBtn.addEventListener("click", () => {
+  saveResponse();
+  if (currentQuestion > 0) {
+    currentQuestion--;
+    showQuestion();
+  }
 });
 
-function generateCSV(data) {
-  let headers = Object.keys(data).join(',');
-  let values = Object.values(data).map(v => `"${v}"`).join(',');
-  return `${headers}\n${values}`;
+function saveResponse() {
+  const selected = document.querySelector("input[name='option']:checked");
+  if (selected) {
+    responses[currentQuestion] = parseInt(selected.value);
+  }
 }
 
-function downloadCSV(content) {
-  const blob = new Blob([content], { type: 'text/csv;charset=utf-8;' });
-  const link = document.createElement('a');
-  link.setAttribute('href', URL.createObjectURL(blob));
-  link.setAttribute('download', `checkin-${Date.now()}.csv`);
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+function showResults() {
+  quiz.classList.add("hidden");
+  results.classList.remove("hidden");
+  let total = responses.reduce((acc, val) => acc + (val ?? 0), 0);
+  summary.innerHTML = `Pontuação total: <strong>${total}</strong> de ${questions.length * 3}`;
 }
 
-// Função opcional para autogerar perguntas se quiser programaticamente adicionar no HTML futuramente
-function generateQuestionsHTML(questions) {
-  return questions.map((q, index) => `
-    <div class="question">
-      <p>${index + 1}. ${q}</p>
-      <input type="hidden" name="q${index + 1}" />
-      <div class="option-grid">
-        <button type="button" class="option" data-value="A">A</button>
-        <button type="button" class="option" data-value="B">B</button>
-        <button type="button" class="option" data-value="C">C</button>
-        <button type="button" class="option" data-value="D">D</button>
-      </div>
-    </div>
-  `).join('');
-}
+restartBtn.addEventListener("click", () => {
+  location.reload();
+});
+
+document.getElementById("exportBtn").addEventListener("click", () => {
+  const wb = XLSX.utils.book_new();
+  const data = questions.map((q, i) => ({
+    Pergunta: q.text,
+    Resposta: q.options[responses[i]] || "Não respondida"
+  }));
+  const ws = XLSX.utils.json_to_sheet(data);
+  XLSX.utils.book_append_sheet(wb, ws, "Respostas");
+  XLSX.writeFile(wb, "avaliacao_ocupacional.xlsx");
+});
